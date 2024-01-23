@@ -4,23 +4,24 @@ import FilterItem from "./FilterItem";
 import { MainContext } from '../../Providers';
 import useFilter from '../../hooks/useFilter';
 
-
 const Filters = () => {
 
-  const { allMeters, selectedMeters, handleChangeMeters } = useContext(MainContext);
+  const { 
+    allMeters, selectedMeters, 
+    handleChangeMeters 
+  } = useContext(MainContext);
 
   const { 
-    startDate,
-    endDate,
-    startTime,
-    endTime,
+    startDate, endDate,
+    startTime, endTime,
     onChangeStartDuration,
     onChangeStartTime,
     onChangeEndDuration,
     onChangeEndTime
   } = useFilter()
   return (
-    <div style={{ display: "flex", flexWrap: "wrap", }}>
+
+    <div style={{ display: "flex", flexWrap: "wrap", gap: 10 }}>
 
       <ButtonContainer>
 
@@ -40,7 +41,6 @@ const Filters = () => {
         ))}
 
       </ButtonContainer>
-
 
       <ButtonContainer>
 

@@ -1,3 +1,5 @@
+export const graphSetting = { height: 700 };
+
 export const normalizeDataset = (dataset, limit) => {
     const dataSize = dataset.length
     const normalizedDataset = [];
@@ -47,15 +49,15 @@ export const normalizeDataset = (dataset, limit) => {
     return dataset;
 }
 
-export const graphSetting = { height: 700 };
-
 export const valueFormatter = (value) => `${value} watts`;
 
 export const getSeries = (dataset, enableCluster, selectedMeters) => {
+    if(!dataset || dataset.length == 0) return []
+
     const filterQuery = (item) => (
         (item !== 'timestamp') && 
         (item !== 'cluster' || enableCluster) && 
-        (selectedMeters.length > 0 ? selectedMeters.includes(item) : true)
+        (item !== 'cluster' && selectedMeters.length > 0 ? selectedMeters.includes(item) : true)
     )
 
     return Object.keys(dataset[0]).filter(

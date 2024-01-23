@@ -53,7 +53,11 @@ const useMetering = () => {
       })
     }, []);
   
-    const toggleClusters = useCallback(() => {
+    const toggleClusters = useCallback((val) => {
+      if(typeof val === 'boolean'){
+        setShowClusters(val);
+        return
+      }
       setShowClusters(prevVal => !prevVal)
     }, []);
 
