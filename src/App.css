@@ -1,38 +1,87 @@
-.App {
-  text-align: center;
+.MuiChartsAxis-tickContainer {
+  min-height: 150px !important;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.MuiChartsAxis-tickLabel {
+  font-weight: bold;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+#customHeader{
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  flex-wrap: wrap; 
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  gap: 16px;
+  margin-bottom: 15px;
 }
 
-.App-link {
-  color: #61dafb;
+button {
+  background-color: #554763;
+  border: 0;
+  border-radius: 50px;
+  cursor: pointer;
+  height: 48px;
+  position: relative;
+  width: 96px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+
+button:focus,
+button:active {
+  outline: none;
+}
+
+button::-moz-focus-inner {
+  border: 0;
+}
+
+.pin {
+  background-color: white;
+  border-radius: 48px;
+  height: 48px;
+  left: 1px;
+  position: absolute;
+  top: 0px;
+  width: 48px;
+  transition: left ease .5s;
+}
+
+button.on {
+  background-color: #405f61;
+}
+
+button.on .pin {
+  left: 47px;
+}
+
+.custom-button-container{
+  border: thick double #32a1ce;
+  border-radius: 3px;
+  gap: "16px"
+}
+
+.label-container{
+  cursor: pointer; 
+  text-align: center; 
+  min-width: 50px;
+  padding: 0 10px;
+  background: #405f61;
+  border-radius: 20px;
+}
+
+.custom-label{
+  margin: 0 auto;
+  font-weight: 700; 
+  color: white; 
+  cursor: pointer;
+}
+
+@media (prefers-color-scheme: dark) {
+  html, body,  #root {
+    background: rgb(26, 26, 26);
   }
-  to {
-    transform: rotate(360deg);
+  text{
+    fill:  white !important;
   }
 }
