@@ -1,26 +1,30 @@
-import { lazy, Suspense } from 'react';
+import { lazy, Suspense, useContext } from 'react';
 import { getSeries } from "../../utils";
+import { MainContext } from '../../Providers';
 
 const BarGraph = lazy(() => import('./BarGraph'));
 const LineGraph = lazy(() => import('./LineGraph'));
 
-const Graph = ({ dataset, type, showCluster, selectedMeters }) => {
-    if (!dataset || !dataset.length) return null;
-    const series = getSeries(dataset, showCluster, selectedMeters);
+const Graph = () => {
 
-    if (type === 'bar') {
+    const { data, graphType, showCluster, selectedMeters } = useContext(MainContext);
+
+    if (!data || !data.length) return null;
+    const series = getSeries(data, showCluster, selectedMeters);
+
+    if (graphType === 'bar') {
         return (
             <Suspense fallback={<p>Loading...</p>}>
-                <BarGraph dataset={dataset} series={series} />
+                <BarGraph series={series} />
             </Suspense>
         )
 
     }
 
-    if (type === 'line') {
+    if (graphType === 'line') {
         return (
             <Suspense fallback={<p>Loading...</p>}>
-                <LineGraph dataset={dataset} series={series} />
+                <LineGraph series={series} />
             </Suspense>
         )
     }

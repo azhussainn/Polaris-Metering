@@ -1,12 +1,16 @@
+import { useContext } from 'react';
 import { BarChart } from '@mui/x-charts/BarChart';
 import { graphSetting } from '../../../utils';
 import useGraphLabel from '../../../hooks/useGraphLabel';
+import { MainContext } from '../../../Providers';
 
-export default function BarGraph({ dataset, series }) {
+export default function BarGraph({ series }) {
     useGraphLabel();
+    const { data } = useContext(MainContext);
+    if (!data || !data.length) return null;
     return (
         <BarChart
-            dataset={dataset}
+            dataset={data}
             xAxis={[{ 
                 scaleType: 'band', 
                 dataKey: 'timestamp',

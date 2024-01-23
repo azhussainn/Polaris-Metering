@@ -1,7 +1,12 @@
+import { useContext } from 'react';
 import ButtonContainer from "../ButtonContainer";
 import ToggleButton from "../ToggleButton"
+import { MainContext } from '../../Providers';
 
-const ToggleCluster = ({ showCluster, toggleClusters }) => {
+const ToggleCluster = () => {
+
+    const { showCluster, toggleClusters } = useContext(MainContext);
+
     return (
         <ButtonContainer>
             <div style={{ cursor: "pointer", textAlign: "center", minWidth: 50, padding: "0 10px", background: "#405f61", borderRadius: 20 }}>

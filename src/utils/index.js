@@ -105,3 +105,8 @@ export const getAllMeters = (obj) => {
     if (!obj) return [];
     return Object.keys(obj).filter(key => key !== "cluster" && key !== 'timestamp');
 }
+
+export const reverseDateString = (inputStr) => {
+    return inputStr.split("-").reverse().join("-");
+}
+  

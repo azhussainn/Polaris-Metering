@@ -1,18 +1,23 @@
+import { useContext } from 'react';
 import ButtonContainer from "../ButtonContainer";
-import ToggleButton from "../ToggleButton"
+import ToggleButton from "../ToggleButton";
+import { MainContext } from '../../Providers';
 
-const ToggleGraph = ({ type, handleChange }) => {
+const ToggleGraph = () => {
+
+    const { graphType, changeGraphType } = useContext(MainContext);
+
     return (
         <div style={{ display: "flex", justifyContent: "flex-end" }}>
             <ButtonContainer>
                 
-                <div onClick={() => handleChange("line")} style={{ cursor: "pointer", textAlign: "center",  minWidth: 50, padding: "0 10px", background: "#405f61" , borderRadius: 20 }}>
+                <div onClick={() => changeGraphType("line")} style={{ cursor: "pointer", textAlign: "center",  minWidth: 50, padding: "0 10px", background: "#405f61" , borderRadius: 20 }}>
                     <p style={{ margin: "0 auto", fontWeight: 700, color: "white" }}>LINE</p>
                 </div>
 
-                <ToggleButton on={type === 'bar'} handleChange={handleChange} />
+                <ToggleButton on={graphType === 'bar'} handleChange={changeGraphType} />
 
-                <div onClick={() => handleChange("bar")} style={{ cursor: "pointer", textAlign: "center",  minWidth: 50, padding: "0 10px", background: "#554763", borderRadius: 20 }}>
+                <div onClick={() => changeGraphType("bar")} style={{ cursor: "pointer", textAlign: "center",  minWidth: 50, padding: "0 10px", background: "#554763", borderRadius: 20 }}>
                     <p style={{ margin: "0 auto", fontWeight: 700, color: "white" }}>BAR</p>
                 </div>
                 
