@@ -5,7 +5,6 @@ import useMetering from '../../hooks/useMetering';
 
 const Home = () => {
   const data = useMetering();
-  // console.log(data)
   return (
     <main className="App" style={{ padding: "20px" }}>
       <HomeProvider data={data}>

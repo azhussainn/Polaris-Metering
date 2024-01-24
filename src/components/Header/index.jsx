@@ -17,7 +17,7 @@ const Header = () => {
             
             <ButtonContainer>
                 <Link to="/config">
-                    <Suspense fallback={<p>Loading...</p>}>
+                    <Suspense fallback={<p className="no-items">Loading...</p>}>
                         <Config />
                     </Suspense>
                 </Link>
