@@ -1,53 +1,79 @@
 export const graphSetting = { height: 700 };
 
+
+const getInitialMetersValuesObj = (dataset) => {
+    if(!dataset || dataset.length === 0) return {}
+    const tempObj = {}
+    Object.keys(dataset[0]).map(item => tempObj[item] = 0);
+    delete tempObj['timestamp'];
+    return tempObj;
+}
+
+
+const getNormalizedData = (dataset, index, windowSize, tempObj, total) => {
+        //getting the getting window
+        const currentWindow = dataset.slice(index, index + windowSize);
+
+        //getting the sum of the current window
+        const aggregateObj = {...tempObj}
+
+        currentWindow.reduce((acc, item) => {
+            Object.keys(acc).forEach(key => {
+                aggregateObj[key] += Number(item[key]);
+            })
+            return aggregateObj
+        }, aggregateObj)
+
+
+        //getting the average from the sum
+        Object.keys(aggregateObj).forEach(key => {
+            aggregateObj[key] = Math.floor(aggregateObj[key] / total);
+        })
+
+        const startTime = currentWindow[0].timestamp.split(" ");
+        return {
+            ...aggregateObj,
+            "timestamp": `${startTime[0]} ${startTime[1]}`
+        };
+}
+
+
+const convertDatasetStringValuesToNums = (dataset) => {
+    dataset.map(ele => {
+        Object.keys(ele).forEach(key => {
+            if (key !== "timestamp") ele[key] = Number(ele[key]);
+        })
+        return ele
+    })
+}
+
+
 export const normalizeDataset = (dataset, limit) => {
     const dataSize = dataset.length
     const normalizedDataset = [];
     if (dataSize > limit) {
-
-        const tempObj = {}
-        Object.keys(dataset[0]).map(item => tempObj[item] = 0);
-        delete tempObj['timestamp'];
+        const tempObj = getInitialMetersValuesObj(dataset);
         const windowSize = Math.floor(dataSize / limit);
+        const remaining = dataSize % 10;
+        let i = 0;
+        while(i <  dataSize - remaining){
+            const normalizedItem = getNormalizedData(dataset, i, windowSize, tempObj, windowSize);
+            normalizedDataset.push(normalizedItem);
+            i += windowSize
+        }
 
-        for (let i = 0; i < dataSize; i += windowSize) {
-
-            //getting the getting window
-            const currentWindow = dataset.slice(i, i + windowSize);
-
-            //getting the sum of the current window
-            const aggregateObj = tempObj
-            currentWindow.reduce((acc, item) => {
-                Object.keys(acc).forEach(key => {
-                    aggregateObj[key] += Number(item[key]);
-                })
-                return aggregateObj
-            }, aggregateObj)
-
-
-            //getting the average from the sum
-            Object.keys(aggregateObj).forEach(key => {
-                aggregateObj[key] = Math.floor(aggregateObj[key] / windowSize);
-            })
-
-            const startTime = currentWindow[0].timestamp.split(" ");
-            normalizedDataset.push({
-                ...aggregateObj,
-                "timestamp": `${startTime[0]} ${startTime[1]}`
-            });
+        if(remaining > 0){
+            const normalizedItem = getNormalizedData(dataset, i, windowSize, tempObj, remaining);
+            normalizedDataset.push(normalizedItem);
         }
 
         return normalizedDataset;
     } else {
-        dataset.map(ele => {
-            Object.keys(ele).forEach(key => {
-                if (key !== "timestamp") ele[key] = Number(ele[key]);
-            })
-            return ele
-        })
+        convertDatasetStringValuesToNums(dataset)
     }
     return dataset;
 }
+
 
 export const valueFormatter = (value) => `${value} watts`;
 

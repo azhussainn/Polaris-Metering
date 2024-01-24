@@ -32,10 +32,7 @@ const useMetering = () => {
     [ startDuration, endDuration ]);
     
 
-    const data = useMemo(() => 
-      normalizeDataset(filteredData, MAX_GRAPH_SIZE), 
-    //eslint-disable-next-line react-hooks/exhaustive-deps
-    [ startDuration, endDuration ]);
+    const data = useMemo(() => normalizeDataset(filteredData, MAX_GRAPH_SIZE), [filteredData]);
 
     const allMeters = getAllMeters(data[0]);
 
