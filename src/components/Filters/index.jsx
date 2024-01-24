@@ -6,12 +6,12 @@ import useFilter from '../../hooks/useFilter';
 
 const Filters = () => {
 
-  const { 
-    allMeters, selectedMeters, 
-    handleChangeMeters 
+  const {
+    allMeters, selectedMeters,
+    handleChangeMeters
   } = useContext(HomeContext);
 
-  const { 
+  const {
     startDate, endDate,
     startTime, endTime,
     onChangeStartDuration,
@@ -23,24 +23,26 @@ const Filters = () => {
 
     <div style={{ display: "flex", flexWrap: "wrap", gap: 10 }}>
 
-      <ButtonContainer>
+      {allMeters.length > 0 &&
+        <ButtonContainer>
 
-        {allMeters.map((meter) => (
-          <FilterItem
-            key={meter}
-            checked={selectedMeters.includes(meter)}
-            value={meter}
-            onChange={() => handleChangeMeters(meter)}
-            type="checkbox"
-            otherProps={{
-              uniqueID: meter,
-              label: meter.toUpperCase(),
-              customContainerStyle: { minWidth: "auto", padding: "0 5px" }
-            }}
-          />
-        ))}
+          {allMeters.map((meter) => (
+            <FilterItem
+              key={meter}
+              checked={selectedMeters.includes(meter)}
+              value={meter}
+              onChange={() => handleChangeMeters(meter)}
+              type="checkbox"
+              otherProps={{
+                uniqueID: meter,
+                label: meter.toUpperCase(),
+                customContainerStyle: { minWidth: "auto", padding: "0 5px" }
+              }}
+            />
+          ))}
 
-      </ButtonContainer>
+        </ButtonContainer>
+      }
 
       <ButtonContainer>
 
