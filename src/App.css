@@ -58,7 +58,8 @@ button.on .pin {
 .custom-button-container{
   border: thick double #32a1ce;
   border-radius: 3px;
-  gap: "16px"
+  gap: "16px";
+  user-select: none;
 }
 
 .label-container{
@@ -75,6 +76,7 @@ button.on .pin {
   font-weight: 700; 
   color: white; 
   cursor: pointer;
+  user-select: none;
 }
 
 .no-items{

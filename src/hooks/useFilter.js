@@ -18,22 +18,22 @@ const useFilter = () => {
     const onChangeStartDuration = useCallback((e) => {
         const date = reverseDateString(e.target.value);
         handleChangeDuration("start", date + " " + startTime);
-    }, [ startTime, handleChangeDuration ])
+    }, [ startTime, handleChangeDuration ]);
 
     const onChangeEndDuration = useCallback((e) => {
         const date = reverseDateString(e.target.value);
         handleChangeDuration("end", date + " " + startTime);
-    }, [ startTime, handleChangeDuration ])
+    }, [ startTime, handleChangeDuration ]);
 
     const onChangeStartTime = useCallback((e) => {
         const date = reverseDateString(startDate);
         handleChangeDuration("start", date + " " + e.target.value);
-    }, [ startDate, handleChangeDuration ])
+    }, [ startDate, handleChangeDuration ]);
 
     const onChangeEndTime = useCallback((e) => {
         const date = reverseDateString(endDate);
         handleChangeDuration("end", date + " " + e.target.value);
-    }, [ endDate, handleChangeDuration ])
+    }, [ endDate, handleChangeDuration ]);
 
     return  {
         startDate,

@@ -1,15 +1,14 @@
-import { useContext } from 'react';
+import MeterFilters from './MeterFilters';
 import ButtonContainer from "../ButtonContainer";
 import FilterItem from "./FilterItem";
-import { HomeContext } from '../../Providers';
 import useFilter from '../../hooks/useFilter';
 
-const Filters = () => {
+const CONTAINER_STYLE = { 
+  display: "flex", flexWrap: "wrap", 
+  gap: 10 
+}
 
-  const {
-    allMeters, selectedMeters,
-    handleChangeMeters
-  } = useContext(HomeContext);
+const Filters = () => {
 
   const {
     startDate, endDate,
@@ -21,28 +20,9 @@ const Filters = () => {
   } = useFilter()
   return (
 
-    <div style={{ display: "flex", flexWrap: "wrap", gap: 10 }}>
+    <section style={CONTAINER_STYLE}>
 
-      {allMeters.length > 0 &&
-        <ButtonContainer>
-
-          {allMeters.map((meter) => (
-            <FilterItem
-              key={meter}
-              checked={selectedMeters.includes(meter)}
-              value={meter}
-              onChange={() => handleChangeMeters(meter)}
-              type="checkbox"
-              otherProps={{
-                uniqueID: meter,
-                label: meter.toUpperCase(),
-                customContainerStyle: { minWidth: "auto", padding: "0 5px" }
-              }}
-            />
-          ))}
-
-        </ButtonContainer>
-      }
+      <MeterFilters />
 
       <ButtonContainer>
 
@@ -96,7 +76,7 @@ const Filters = () => {
 
       </ButtonContainer>
 
-    </div>
+    </section>
   )
 }
 
