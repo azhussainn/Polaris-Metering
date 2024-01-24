@@ -4,9 +4,8 @@ import Graph from '../../components/Graph';
 import useMetering from '../../hooks/useMetering';
 
 const Home = () => {
-
   const data = useMetering();
-
+  
   return (
     <main className="App" style={{ padding: "20px" }}>
       <HomeProvider data={data}>

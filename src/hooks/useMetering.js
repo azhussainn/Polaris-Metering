@@ -7,7 +7,7 @@ import {
 } from '../utils';
 import dataset from "../constants/data.json"
 
-const MAX_BAR_SIZE = 10;
+const MAX_GRAPH_SIZE = 10;
 
 const useMetering = () => {
     const [searchParams, ] = useSearchParams();
@@ -33,7 +33,7 @@ const useMetering = () => {
     
 
     const data = useMemo(() => 
-      normalizeDataset(filteredData, MAX_BAR_SIZE), 
+      normalizeDataset(filteredData, MAX_GRAPH_SIZE), 
     //eslint-disable-next-line react-hooks/exhaustive-deps
     [ startDuration, endDuration ]);
 

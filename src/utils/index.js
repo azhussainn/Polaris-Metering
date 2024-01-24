@@ -51,8 +51,9 @@ export const normalizeDataset = (dataset, limit) => {
 
 export const valueFormatter = (value) => `${value} watts`;
 
+
 export const getSeries = (dataset, enableCluster, selectedMeters) => {
-    if(!dataset || dataset.length == 0) return []
+    if(!dataset || dataset.length === 0) return []
 
     const filterQuery = (item) => (
         (item !== 'timestamp') && 
@@ -67,46 +68,46 @@ export const getSeries = (dataset, enableCluster, selectedMeters) => {
         }))
 }
 
+
 export const getUserDate = (inputString) => {
     if (!inputString) return null;
     return decodeURIComponent(inputString)
 }
+
 
 export const getUserMeters = (inputVal) => {
     if (!inputVal) return [];
     return inputVal.split(",").filter(item => item.trim().length > 0)
 }
 
+
 export const filterByDate = (dataset, startDate, endDate) => {
     if (!startDate && !endDate) return dataset;
-    let result = [...dataset]
+    let startCount = 0
     if (startDate && startDate.length > 0) {
-        let count = 0;
         for (let item of dataset) {
-            if (item.timestamp === startDate) {
-                result = result.slice(count,)
-                break
-            }
-            count++;
+            if (item.timestamp === startDate) break;
+            startCount++;
         }
     }
+
+    let endCount = dataset.length - 1;
     if (endDate && endDate.length > 0) {
-        let i = result.length - 1;
-        while (i > -1) {
-            const item = result[i];
-            if (item.timestamp === endDate) {
-                result = result.slice(0, i + 1)
-            }
-            i--;
+        while (endCount >= startCount) {
+            const item = dataset[endCount];
+            if (item.timestamp === endDate) break;
+            endCount--;
         }
     }
-    return result;
+    return dataset.slice(startCount, endCount + 1);
 }
+
 
 export const getAllMeters = (obj) => {
     if (!obj) return [];
     return Object.keys(obj).filter(key => key !== "cluster" && key !== 'timestamp');
 }
+
 
 export const reverseDateString = (inputStr) => {
     return inputStr.split("-").reverse().join("-");

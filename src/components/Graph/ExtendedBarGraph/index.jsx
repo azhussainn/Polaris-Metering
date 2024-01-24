@@ -24,7 +24,6 @@ const getStackSeries = (data, showCluster, selectedMeters, allMeters) => {
 }
 
 const ExtendedBarGraph = () => {
-
   const { data, showCluster, selectedMeters, allMeters } = useContext(HomeContext);
   const [type, setType] = useState('normal')
 

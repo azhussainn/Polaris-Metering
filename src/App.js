@@ -4,7 +4,6 @@ import useMain from "./hooks/useMain";
 import './App.css';
 
 const App = () => {
-
     const data = useMain();
     return (
         <MainProvider data={data}>

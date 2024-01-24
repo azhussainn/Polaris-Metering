@@ -1,25 +1,19 @@
 import { lazy, Suspense, useContext } from 'react';
 import { getSeries } from "../../utils";
 import { HomeContext, MainContext } from '../../Providers';
+import ExtendedBarGraph from './ExtendedBarGraph';
 
-const ExtendedBarGraph = lazy(() => import('./ExtendedBarGraph'));
 const LineGraph = lazy(() => import('./LineGraph'));
+const NoData = lazy(() => import('../NoData'));
 
 const Graph = () => {
 
     const { graphType, showCluster } = useContext(MainContext);
     const { data, selectedMeters } = useContext(HomeContext);
 
-    if (!data || !data.length) return null;
+    if (!data || !data.length) return <NoData />;
 
-    if (graphType === 'bar') {
-        return (
-            <Suspense fallback={<p>Loading...</p>}>
-                <ExtendedBarGraph />
-            </Suspense>
-        )
-
-    }
+    if (graphType === 'bar') return  <ExtendedBarGraph />
 
     if (graphType === 'line') {
         return (
@@ -29,7 +23,7 @@ const Graph = () => {
         )
     }
 
-    return null;
+    return <NoData />;
 
 }
 
