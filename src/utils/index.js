@@ -89,6 +89,18 @@ export const getSeries = (dataset, enableCluster, selectedMeters) => {
         }))
 }
 
+export const getStackSeries = (data, showCluster, selectedMeters, allMeters) => {
+    const metersData = selectedMeters.length > 0 ? selectedMeters : allMeters;
+    const currentMeters = showCluster ? [...metersData, "cluster"] :  [...metersData]
+    return currentMeters.map(meter => {
+      return {
+        label: meter,
+        data: data.map(item => item[meter]),
+        stack: "total"
+      }
+    })
+  }
+
 
 export const getUserDate = (inputString) => {
     if (!inputString) return null;

@@ -1,8 +1,8 @@
 import { useState, useCallback, useContext } from 'react';
 import BarGraph from '../BarGraph';
 import ToggleStackBarGraph from '../../ToggleStackBarGraph';
-import { HomeContext } from '../../../Providers';
-import { getSeries } from '../../../utils';
+import { HomeContext, MainContext } from '../../../Providers';
+import { getSeries, getStackSeries } from '../../../utils';
 
 const normalXAxis = {
   scaleType: 'band',
@@ -11,20 +11,10 @@ const normalXAxis = {
   barGapRatio: 0.1,
 }
 
-const getStackSeries = (data, showCluster, selectedMeters, allMeters) => {
-  const metersData = selectedMeters.length > 0 ? selectedMeters : allMeters;
-  const currentMeters = showCluster ? [...metersData, "cluster"] :  [...metersData]
-  return currentMeters.map(meter => {
-    return {
-      label: meter,
-      data: data.map(item => item[meter]),
-      stack: "total"
-    }
-  })
-}
-
 const ExtendedBarGraph = () => {
-  const { data, showCluster, selectedMeters, allMeters } = useContext(HomeContext);
+
+  const { showCluster } = useContext(MainContext)
+  const { data, selectedMeters, allMeters } = useContext(HomeContext);
   const [type, setType] = useState('normal')
 
   const toggleBarGraph = useCallback((val) => {
