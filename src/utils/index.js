@@ -30,6 +30,7 @@ const getNormalizedData = (dataset, index, windowSize, tempObj, total) => {
             aggregateObj[key] = Math.floor(aggregateObj[key] / total);
         })
 
+
         const startTime = currentWindow[0].timestamp.split(" ");
         return {
             ...aggregateObj,
@@ -38,38 +39,32 @@ const getNormalizedData = (dataset, index, windowSize, tempObj, total) => {
 }
 
 
-const convertDatasetStringValuesToNums = (dataset) => {
-    dataset.map(ele => {
-        Object.keys(ele).forEach(key => {
-            if (key !== "timestamp") ele[key] = Number(ele[key]);
-        })
-        return ele
-    })
-}
-
-
 export const normalizeDataset = (dataset, limit) => {
     const dataSize = dataset.length
     const normalizedDataset = [];
     if (dataSize > limit) {
-        const tempObj = getInitialMetersValuesObj(dataset);
+        const intialMetersObj = getInitialMetersValuesObj(dataset);
         const windowSize = Math.floor(dataSize / limit);
         const remaining = dataSize % 10;
         let i = 0;
         while(i <  dataSize - remaining){
-            const normalizedItem = getNormalizedData(dataset, i, windowSize, tempObj, windowSize);
+            const normalizedItem = getNormalizedData(dataset, i, windowSize, intialMetersObj, windowSize);
             normalizedDataset.push(normalizedItem);
             i += windowSize
         }
 
         if(remaining > 0){
-            const normalizedItem = getNormalizedData(dataset, i, windowSize, tempObj, remaining);
+            const normalizedItem = getNormalizedData(dataset, i, windowSize, intialMetersObj, remaining);
             normalizedDataset.push(normalizedItem);
         }
 
         return normalizedDataset;
     } else {
-        convertDatasetStringValuesToNums(dataset)
+        dataset.forEach(ele => {
+            Object.keys(ele).forEach(key => {
+                if (key !== "timestamp") ele[key] = Number(ele[key]);
+            })
+        })
     }
     return dataset;
 }
