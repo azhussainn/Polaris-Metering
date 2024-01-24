@@ -84,4 +84,7 @@ button.on .pin {
   text{
     fill:  white !important;
   }
+  .svg-items{
+    fill:  white !important;
+  }
 }

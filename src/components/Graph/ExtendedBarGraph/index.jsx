@@ -1,7 +1,7 @@
 import { useState, useCallback, useContext } from 'react';
 import BarGraph from '../BarGraph';
 import ToggleStackBarGraph from '../../ToggleStackBarGraph';
-import { MainContext } from '../../../Providers';
+import { HomeContext } from '../../../Providers';
 import { getSeries } from '../../../utils';
 
 const normalXAxis = {
@@ -25,7 +25,7 @@ const getStackSeries = (data, showCluster, selectedMeters, allMeters) => {
 
 const ExtendedBarGraph = () => {
 
-  const { data, showCluster, selectedMeters, allMeters } = useContext(MainContext);
+  const { data, showCluster, selectedMeters, allMeters } = useContext(HomeContext);
   const [type, setType] = useState('normal')
 
   const toggleBarGraph = useCallback((val) => {

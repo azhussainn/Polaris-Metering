@@ -1,5 +1,5 @@
 import { useContext, useCallback } from 'react';
-import { MainContext } from '../Providers';
+import { HomeContext } from '../Providers';
 import { reverseDateString } from '../utils';
 
 const useFilter = () => {
@@ -7,7 +7,7 @@ const useFilter = () => {
     const {
         startDuration, endDuration,
         handleChangeDuration
-    } = useContext(MainContext);
+    } = useContext(HomeContext);
 
     const [defaultStartDate, startTime] = startDuration.split(" ");
     const [defaultEndDate, endTime] = endDuration.split(" ");

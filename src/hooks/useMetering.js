@@ -39,28 +39,6 @@ const useMetering = () => {
 
     const allMeters = getAllMeters(data[0]);
 
-    const [graphType, setGraphType] = useState('bar');
-    const [showCluster, setShowClusters] = useState(false);
-  
-    const changeGraphType = useCallback((val) => {
-      if(typeof val === 'string'){
-        setGraphType(val);
-        return
-      }
-      setGraphType(prevType => {
-        if (prevType === 'bar') return "line"
-        return 'bar'
-      })
-    }, []);
-  
-    const toggleClusters = useCallback((val) => {
-      if(typeof val === 'boolean'){
-        setShowClusters(val);
-        return
-      }
-      setShowClusters(prevVal => !prevVal)
-    }, []);
-
     const handleChangeDuration = useCallback((type, val) => {
         if(type === "start"){
           setStartDuration(val);
@@ -83,14 +61,10 @@ const useMetering = () => {
 
     return {
         data,
-        showCluster,
-        graphType,
         allMeters,
         startDuration,
         endDuration,
         selectedMeters,
-        changeGraphType,
-        toggleClusters,
         handleChangeDuration,
         handleChangeMeters
     }

@@ -1,16 +1,16 @@
 import { lazy, Suspense, useContext } from 'react';
 import { getSeries } from "../../utils";
-import { MainContext } from '../../Providers';
+import { HomeContext, MainContext } from '../../Providers';
 
 const ExtendedBarGraph = lazy(() => import('./ExtendedBarGraph'));
 const LineGraph = lazy(() => import('./LineGraph'));
 
 const Graph = () => {
 
-    const { data, graphType, showCluster, selectedMeters } = useContext(MainContext);
+    const { graphType, showCluster } = useContext(MainContext);
+    const { data, selectedMeters } = useContext(HomeContext);
 
     if (!data || !data.length) return null;
-
 
     if (graphType === 'bar') {
         return (

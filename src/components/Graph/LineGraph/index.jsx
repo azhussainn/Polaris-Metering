@@ -2,11 +2,11 @@ import { useContext } from 'react';
 import { LineChart } from '@mui/x-charts/LineChart';
 import { graphSetting } from '../../../utils';
 import useGraphLabel from '../../../hooks/useGraphLabel';
-import { MainContext } from '../../../Providers';
+import { HomeContext } from '../../../Providers';
 
 export default function LineGraph({ series }) {
   useGraphLabel();
-  const { data } = useContext(MainContext);
+  const { data } = useContext(HomeContext);
   if (!data || !data.length) return null;
   return (
     <LineChart

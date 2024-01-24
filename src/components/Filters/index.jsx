@@ -1,7 +1,7 @@
 import { useContext } from 'react';
 import ButtonContainer from "../ButtonContainer";
 import FilterItem from "./FilterItem";
-import { MainContext } from '../../Providers';
+import { HomeContext } from '../../Providers';
 import useFilter from '../../hooks/useFilter';
 
 const Filters = () => {
@@ -9,7 +9,7 @@ const Filters = () => {
   const { 
     allMeters, selectedMeters, 
     handleChangeMeters 
-  } = useContext(MainContext);
+  } = useContext(HomeContext);
 
   const { 
     startDate, endDate,
