@@ -13,10 +13,13 @@ const HEADER_STYLE = {
 const Header = () => {
     return (
         <header style={HEADER_STYLE}>
+
+            {/* home filters */}
             <Filters />
             
+            {/* Config Screen Link */}
             <ButtonContainer>
-                <Link to="/config">
+                <Link to="/config" aria-label="configuration">
                     <Suspense fallback={<p className="no-items">Loading...</p>}>
                         <Config />
                     </Suspense>

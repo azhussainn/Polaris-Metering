@@ -1,6 +1,6 @@
 const Alerts = () => {
   return (
-    <div>Alerts</div>
+    <div>Not Implemented Yet</div>
   )
 }
 

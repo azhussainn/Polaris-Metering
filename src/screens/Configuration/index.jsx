@@ -8,12 +8,16 @@ import { Graph } from "../../components/Icons";
 const Configuration = () => {
   return (
     <div style={FLEX_BOX}>
+
+      {/* Toggle Graph Type */}
       <ToggleGraph />
       
+      {/* Toggle Cluster */}
       <ToggleCluster />
 
+      {/* Link to Home */}
       <ButtonContainer>
-        <Link to="/" style={{ padding: "5px" }}>
+        <Link to="/" style={{ padding: "5px" }} aria-label="home">
           <Graph />
         </Link>
       </ButtonContainer>

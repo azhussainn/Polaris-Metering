@@ -2,6 +2,8 @@ import { useEffect } from 'react';
 
 //FIXME: Find a better way to fix graph labels
 
+
+//this hook pushes every graph x-Axis label by 20px
 const useGraphLabel = () => {
     
     useEffect(() => {

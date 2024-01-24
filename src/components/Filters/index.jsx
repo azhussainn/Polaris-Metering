@@ -22,8 +22,10 @@ const Filters = () => {
 
     <section style={CONTAINER_STYLE}>
 
+      {/* Meter filters */}
       <MeterFilters />
 
+      {/* start date + time filters */}
       <ButtonContainer>
 
         <FilterItem
@@ -50,6 +52,7 @@ const Filters = () => {
 
       </ButtonContainer>
 
+      {/* end date + time filters */}
       <ButtonContainer>
 
         <FilterItem

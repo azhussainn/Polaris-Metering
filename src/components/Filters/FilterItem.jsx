@@ -8,7 +8,7 @@ const FilterItem = (props) => {
                     {label}
                 </label>
             </div>
-            <input {...rest}  />
+            <input {...rest} name={uniqueID} id={uniqueID} />
         </>
     )
 }

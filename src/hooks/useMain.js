@@ -5,6 +5,7 @@ const useMain = () => {
     const [graphType, setGraphType] = useState('bar');
     const [showCluster, setShowClusters] = useState(false);
 
+    //changes the type of the graph
     const changeGraphType = useCallback((val) => {
         if(typeof val === 'string'){
           setGraphType(val);
@@ -16,13 +17,14 @@ const useMain = () => {
         })
       }, []);
 
-      const toggleClusters = useCallback((val) => {
-        if(typeof val === 'boolean'){
-          setShowClusters(val);
-          return
-        }
-        setShowClusters(prevVal => !prevVal)
-      }, []);
+    //toggles cluster visiblity
+    const toggleClusters = useCallback((val) => {
+      if(typeof val === 'boolean'){
+        setShowClusters(val);
+        return
+      }
+      setShowClusters(prevVal => !prevVal)
+    }, []);
   
     return {
         graphType,

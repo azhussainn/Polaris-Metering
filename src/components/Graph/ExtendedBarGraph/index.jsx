@@ -17,6 +17,7 @@ const ExtendedBarGraph = () => {
   const { data, selectedMeters, allMeters } = useContext(HomeContext);
   const [type, setType] = useState('normal')
 
+  // toggles bar graph -> (bar - stack)
   const toggleBarGraph = useCallback((val) => {
     if (typeof val === 'string') {
       setType(val)
@@ -30,7 +31,10 @@ const ExtendedBarGraph = () => {
 
   return (
     <>
+
+      {/* Toggles stack - normal bar graph */}
       <ToggleStackBarGraph type={type} toggleBarGraph={toggleBarGraph} />
+
       <BarGraph
         xAxis={type === 'normal' ?
           normalXAxis :

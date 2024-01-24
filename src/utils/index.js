@@ -1,6 +1,6 @@
 export const graphSetting = { height: 700 };
 
-
+//returns initialValues ==> { m1: 0, m2: 0, m3: 0 }
 const getInitialMetersValuesObj = (dataset) => {
     if(!dataset || dataset.length === 0) return {}
     const tempObj = {}
@@ -11,7 +11,6 @@ const getInitialMetersValuesObj = (dataset) => {
 
 
 const getNormalizedData = (dataset, index, windowSize, tempObj, total) => {
-        //getting the getting window
         const currentWindow = dataset.slice(index, index + windowSize);
 
         //getting the sum of the current window
@@ -39,6 +38,8 @@ const getNormalizedData = (dataset, index, windowSize, tempObj, total) => {
 }
 
 
+//normalized dataset using a limit
+//return an (average of limit items )of dataset
 export const normalizeDataset = (dataset, limit) => {
     const dataSize = dataset.length
     const normalizedDataset = [];
@@ -73,6 +74,7 @@ export const normalizeDataset = (dataset, limit) => {
 export const valueFormatter = (value) => `${value} watts`;
 
 
+//converts dataset into bar/line graph series
 export const getSeries = (dataset, enableCluster, selectedMeters) => {
     if(!dataset || dataset.length === 0) return []
 
@@ -89,6 +91,7 @@ export const getSeries = (dataset, enableCluster, selectedMeters) => {
         }))
 }
 
+//converts dataset into stack graph series
 export const getStackSeries = (data, showCluster, selectedMeters, allMeters) => {
     const metersData = selectedMeters.length > 0 ? selectedMeters : allMeters;
     const currentMeters = showCluster ? [...metersData, "cluster"] :  [...metersData]
@@ -99,7 +102,7 @@ export const getStackSeries = (data, showCluster, selectedMeters, allMeters) => 
         stack: "total"
       }
     })
-  }
+}
 
 
 export const getUserDate = (inputString) => {
@@ -113,7 +116,7 @@ export const getUserMeters = (inputVal) => {
     return inputVal.split(",").filter(item => item.trim().length > 0)
 }
 
-
+//filters dataset by startDate, endDate
 export const filterByDate = (dataset, startDate, endDate) => {
     if (!startDate && !endDate) return dataset;
     let startCount = 0

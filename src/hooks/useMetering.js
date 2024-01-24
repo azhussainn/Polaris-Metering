@@ -32,10 +32,13 @@ const useMetering = () => {
     [ startDuration, endDuration ]);
     
 
-    const data = useMemo(() => normalizeDataset(filteredData, MAX_GRAPH_SIZE), [filteredData]);
+    const data = useMemo(() => 
+      normalizeDataset(filteredData, MAX_GRAPH_SIZE), 
+    [filteredData]);
 
     const allMeters = getAllMeters(data[0]);
 
+    //changes the start/end duration
     const handleChangeDuration = useCallback((type, val) => {
         if(type === "start"){
           setStartDuration(val);
@@ -46,6 +49,7 @@ const useMetering = () => {
     }, []);
 
 
+    //changes the selected meters
     const handleChangeMeters = useCallback((val) => {
       setSelectedMeters(prevMeters => {
         if(prevMeters.includes(val)){

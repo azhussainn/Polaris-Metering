@@ -3,6 +3,7 @@ const ToggleButton = ({ on, handleChange }) => {
         <button
             className={on ? 'on' : 'off'}
             onClick={handleChange}
+            aria-label="change graph"
         >
             <span className="pin" />
         </button>
