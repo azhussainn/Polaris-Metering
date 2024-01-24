@@ -4,22 +4,19 @@ import { graphSetting } from '../../../utils';
 import useGraphLabel from '../../../hooks/useGraphLabel';
 import { MainContext } from '../../../Providers';
 
-export default function BarGraph({ series }) {
+export default function BarGraph({ xAxis, series, dataset }) {
     useGraphLabel();
     const { data } = useContext(MainContext);
     if (!data || !data.length) return null;
     return (
-        <BarChart
-            dataset={data}
-            xAxis={[{ 
-                scaleType: 'band', 
-                dataKey: 'timestamp',
-                categoryGapRatio: 0.3,
-                barGapRatio: 0.1,
-            }]}
-            series={series}
-            {...graphSetting}
-            
-        />
+        <>
+            <BarChart
+                dataset={dataset}
+                xAxis={[xAxis]}
+                series={series}
+                {...graphSetting}
+
+            />
+        </>
     );
 }

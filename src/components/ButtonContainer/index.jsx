@@ -1,6 +1,6 @@
-const Container = ({ children }) => {
+const Container = ({ children, extraStyle }) => {
     return (
-        <div style={{ display: "flex", alignItems: "center", padding: 10, gap: 7 }} className="custom-button-container">
+        <div style={{ display: "flex", alignItems: "center", padding: 10, gap: 7, ...extraStyle }} className="custom-button-container">
             {children}
         </div>
     )
